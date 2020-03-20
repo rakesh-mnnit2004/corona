@@ -10,6 +10,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2OrderModule } from 'ng2-order-pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
     GoogleChartsModule.forRoot(),
     Ng2SearchPipeModule,
     FormsModule,
-    Ng2OrderModule
+    Ng2OrderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

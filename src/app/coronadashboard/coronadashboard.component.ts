@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoronadashboardService } from './coronadashboard.service';
 
 @Component({
   selector: 'app-coronadashboard',
@@ -12,16 +13,16 @@ export class CoronadashboardComponent implements OnInit {
   totalConfirmedForeign:number;
   cured: number;
   totaldeaths: number;
-  title = 'Corona Statistics in India';
+  title = 'Overall Corona Statistics in India';
    type = 'PieChart';
-   data = [];
+   piedata = [];
    columnNames = ['Statistics', 'Percentage'];
    options = {    
    };
    width = 550;
    height = 400;
 
-   baritle = 'Corona Statistics in India';
+   baritle = 'Corona Statistics in India statewise';
    bartype = 'ColumnChart';
    bardata = [];
  barcolumnNames = ['Indian States', 'Total Confirmed Cases in States','Total Confirmed Cases of Foreign Nationals in States'];
@@ -42,7 +43,7 @@ export class CoronadashboardComponent implements OnInit {
     this.key = key;
     this.reverse = !this.reverse;
   }
-  constructor() {
+  constructor(private api: CoronadashboardService) {
 
     this.totalConfirmedIndian=0;
     this.totalConfirmedForeign =0;
@@ -53,6 +54,7 @@ export class CoronadashboardComponent implements OnInit {
 
   ngOnInit() {
     
+    /*
     this.covidData= [
       {
           "stateName": "Andhra Pradesh",
@@ -188,28 +190,42 @@ export class CoronadashboardComponent implements OnInit {
           "deaths": 0
       }
   ]
-  
-  this.covidData.forEach(element => {
-    let temparr =[];
-    temparr.push(element.stateName, element.totalConfirmedCasesIndian, element.totalConfirmedCasesForeign);
-    this.bardata.push(temparr)  ;
-    this.totalConfirmedIndian +=element.totalConfirmedCasesIndian;
-    this.totalConfirmedForeign +=element.totalConfirmedCasesForeign;
-    this.cured +=element.cured;
-    this.totaldeaths +=element.deaths;
-    console.log(element);
-  }); 
-  this.data = [
-    ['Total Confirmed Cases In Indian',this.totalConfirmedIndian],
-    ['Total Confirmed Cases Foreign', this.totalConfirmedForeign],
-    ['Total cured', this.cured],
-    ['Total Deaths', this.totaldeaths]
-   
- ];
-  console.log("total confirm case", this.bardata);
+  */
+  this.getSmartphones();
 
-}
+  
+  console.log("bar data ", this.bardata);
 
  
+}
+
+getSmartphones() {
+    this.api.getCorornaData()
+      .subscribe(data => {
+        this.covidData=data;
+        console.log("Welcome ", data);
+        this.covidData.forEach(element => {
+            let temparr =[];
+            temparr.push(element.stateName, element.totalConfirmedCasesIndian, element.totalConfirmedCasesForeign);
+            this.bardata.push(temparr)  ;
+            this.totalConfirmedIndian +=element.totalConfirmedCasesIndian;
+            this.totalConfirmedForeign +=element.totalConfirmedCasesForeign;
+            this.cured +=element.cured;
+            this.totaldeaths +=element.deaths;
+            console.log(element);
+          }); 
+        
+          this.piedata = [
+            ['Total Confirmed Cases In Indian',this.totalConfirmedIndian],
+            ['Total Confirmed Cases Foreign National', this.totalConfirmedForeign],
+            ['Total cured', this.cured],
+            ['Total Deaths', this.totaldeaths]
+           
+         ];
+        
+      });
+      
+  }
+
 
 }

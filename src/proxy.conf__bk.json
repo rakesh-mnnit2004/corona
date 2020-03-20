@@ -1,0 +1,7 @@
+{
+    "/*": {
+        "target": "http://inhyi0685.intl.att.com:8080/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
