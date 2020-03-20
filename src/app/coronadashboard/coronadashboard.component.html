@@ -4,15 +4,13 @@
       </div>
     <div class="role-list-wp">
       <div class="table-responsive-md">
-        <div class="role-actiontp row d-flex justify-content-end">
-          <div class="col-md-3">
-            <input class="form-control" type="text" placeholder="Search" name="search" >
-          </div>
-        
-        </div>
-        <table class="table table-bordered mb-0" style="margin-left:10px;">
+        <section style="width: 40%; float:left;">
+            <div class="col-md-3">
+                <input class="form-control" type="text" placeholder="Search" name="search" >
+              </div>
+        <table class="table table-bordered mb-0" style="margin-left:10px;border: 1px solid #33B2FF;">
           <thead>
-            <tr>
+            <tr style="background:#33B2FF;color:white;">
               <th scope="col"  (click)="sort('role')" style="cursor:pointer;">S. No.</th>
               <th scope="col"  (click)="sort('roleValue')" style="cursor:pointer;">	Name of State / UT</th>
               <th scope="col"  (click)="sort('active')" style="cursor:pointer;">Total Confirmed cases (Indian National)</th>
@@ -39,7 +37,19 @@
           </tbody>
           
         </table>
-      
+    </section>
+    <section style="width: 40%; float:left;padding-left: 30px;">
+
+      <google-chart #chart
+      [title]="title"
+      [type]="type"
+      [data]="data"
+      [columnNames]="columnNames"
+      [options]="options"
+      [width]="width"
+      [height]="height">
+   </google-chart>
+      </section>
       </div>
     </div>
   </div>

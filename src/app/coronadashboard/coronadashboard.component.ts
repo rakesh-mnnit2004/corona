@@ -8,10 +8,29 @@ import { Component, OnInit } from '@angular/core';
 export class CoronadashboardComponent implements OnInit {
 
   covidData: any;
-  constructor() { }
+  totalConfirmedIndian: number;
+  totalConfirmedForeign:number;
+  cured: number;
+  totaldeaths: number;
+  title = 'Corona Statistics in India';
+   type = 'PieChart';
+   data = [];
+   columnNames = ['Statistics', 'Percentage'];
+   options = {    
+   };
+   width = 550;
+   height = 400;
+  constructor() {
+
+    this.totalConfirmedIndian=0;
+    this.totalConfirmedForeign =0;
+    this.cured =0;
+    this.totaldeaths =0;
+    
+   }
 
   ngOnInit() {
-
+    
     this.covidData= [
       {
           "stateName": "Andhra Pradesh",
@@ -148,6 +167,24 @@ export class CoronadashboardComponent implements OnInit {
       }
   ]
   
-  }
+  this.covidData.forEach(element => {
+    this.totalConfirmedIndian +=element.totalConfirmedCasesIndian;
+    this.totalConfirmedForeign +=element.totalConfirmedCasesForeign;
+    this.cured +=element.cured;
+    this.totaldeaths +=element.deaths;
+    console.log(this.totalConfirmedIndian);
+  }); 
+  this.data = [
+    ['Total Confirmed Cases In Indian',this.totalConfirmedIndian],
+    ['Total Confirmed Cases Foreign', this.totalConfirmedForeign],
+    ['Total cured', this.cured],
+    ['Total Deaths', this.totaldeaths]
+   
+ ];
+  console.log("total confirm case", this.totalConfirmedIndian);
+
+}
+
+ 
 
 }
