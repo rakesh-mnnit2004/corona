@@ -20,6 +20,28 @@ export class CoronadashboardComponent implements OnInit {
    };
    width = 550;
    height = 400;
+
+   baritle = 'Corona Statistics in India';
+   bartype = 'ColumnChart';
+   bardata = [];
+ barcolumnNames = ['Indian States', 'Total Confirmed Cases in States','Total Confirmed Cases of Foreign Nationals in States'];
+ baroptions = {   
+    hAxis: {
+       title: 'Indian States'
+    },
+    vAxis:{
+       minValue:0
+    }  
+ };
+ 
+ barwidth = 850;
+ barheight = 400;
+
+   filter: string;
+   sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
   constructor() {
 
     this.totalConfirmedIndian=0;
@@ -168,11 +190,14 @@ export class CoronadashboardComponent implements OnInit {
   ]
   
   this.covidData.forEach(element => {
+    let temparr =[];
+    temparr.push(element.stateName, element.totalConfirmedCasesIndian, element.totalConfirmedCasesForeign);
+    this.bardata.push(temparr)  ;
     this.totalConfirmedIndian +=element.totalConfirmedCasesIndian;
     this.totalConfirmedForeign +=element.totalConfirmedCasesForeign;
     this.cured +=element.cured;
     this.totaldeaths +=element.deaths;
-    console.log(this.totalConfirmedIndian);
+    console.log(element);
   }); 
   this.data = [
     ['Total Confirmed Cases In Indian',this.totalConfirmedIndian],
@@ -181,7 +206,7 @@ export class CoronadashboardComponent implements OnInit {
     ['Total Deaths', this.totaldeaths]
    
  ];
-  console.log("total confirm case", this.totalConfirmedIndian);
+  console.log("total confirm case", this.bardata);
 
 }
 

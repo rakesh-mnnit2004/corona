@@ -7,6 +7,9 @@ import { CoronadashboardComponent } from './coronadashboard/coronadashboard.comp
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { GoogleChartsModule } from 'angular-google-charts';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    GoogleChartsModule.forRoot()
+    GoogleChartsModule.forRoot(),
+    Ng2SearchPipeModule,
+    FormsModule,
+    Ng2OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
