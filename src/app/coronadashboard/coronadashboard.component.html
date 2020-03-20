@@ -1,0 +1,47 @@
+<div class="role-tab">
+    <div class="col-md-3">
+        Corona Dashboard
+      </div>
+    <div class="role-list-wp">
+      <div class="table-responsive-md">
+        <div class="role-actiontp row d-flex justify-content-end">
+          <div class="col-md-3">
+            <input class="form-control" type="text" placeholder="Search" name="search" >
+          </div>
+        
+        </div>
+        <table class="table table-bordered mb-0" style="margin-left:10px;">
+          <thead>
+            <tr>
+              <th scope="col"  (click)="sort('role')" style="cursor:pointer;">S. No.</th>
+              <th scope="col"  (click)="sort('roleValue')" style="cursor:pointer;">	Name of State / UT</th>
+              <th scope="col"  (click)="sort('active')" style="cursor:pointer;">Total Confirmed cases (Indian National)</th>
+              <th scope="col" style="">Total Confirmed cases ( Foreign National )</th>
+              <th scope="col" style="">Cured/Discharged/Migrated</th>
+              <th scope="col" style="">Death</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr   *ngFor="let data of covidData; let i=index">
+              <td width="10%"><p class="mb-0">{{i}}</p></td>
+              <td width="15%"><p class="mb-0">{{data.stateName}}</p></td>
+              <td width="25%">
+                {{data.totalConfirmedCasesIndian}}</td>
+              <td width="25%">
+                {{data.totalConfirmedCasesForeign}}
+              </td>
+              <td width="15%">
+                {{data.cured}}</td>
+               <td width="15%">
+                {{data.deaths}}
+               </td>
+            </tr>
+          </tbody>
+          
+        </table>
+      
+      </div>
+    </div>
+  </div>
+ 
+   
